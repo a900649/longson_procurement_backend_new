@@ -84,7 +84,7 @@ def create_project():
 
         if st.button('Confirm', key="Add Project Name Button"):
             if new_name in list(project_name_to_data.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_project(new_name,title_name_to_id_dict[select_title],requirements_introduction_name_to_id_dict[select_requirements_introduction],
                                   common_columns_name_to_id_dict[select_common_columns],individual_columns_name_to_id_dict[select_individual_columns],
@@ -92,7 +92,7 @@ def create_project():
                                   internal_mail_receipients_name_to_id_dict[select_internal_mail_receipients],
                                   supplier_mail_setting_name_to_id_dict[select_supplier_mail_setting],check_name_to_id_dict[select_check],select_start)
                 project_name_to_data, project_id_to_data = my.get_project_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
 
@@ -105,11 +105,11 @@ def create_project():
         if select_project != None:
             if st.button('Confirm', key="Edit Title Name"):
                 if edit_name in list(project_name_to_data.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_project_name(select_project,edit_name)
                     project_name_to_data, project_id_to_data = my.get_project_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
 
@@ -137,7 +137,7 @@ def create_project():
                                     internal_mail_receipients_name_to_id_dict[select_internal_mail_receipients],supplier_mail_setting_name_to_id_dict[select_supplier_mail_setting],
                                     check_name_to_id_dict[select_check],select_start)
                 project_name_to_data, project_id_to_data = my.get_project_dict()
-                st.success("變更成功")
+                st.success("Change Successful")
 
 
 def setting_title():
@@ -173,11 +173,11 @@ def setting_title():
 
         if st.button('Confirm', key="Add Title"):
             if new_title_name in list(title_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_title(new_title_name,title_row_1,title_row_2,title_row_3,title_row_4,title_row_5)
                 title_dict = my.get_title_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         select_title = st.selectbox("Select Title", list(title_dict.keys()),key="Edit Title Name Selectbox")
@@ -190,11 +190,11 @@ def setting_title():
         if select_title != None:
             if st.button('Confirm', key="Edit Title"):
                 if edit_title in list(title_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_title_name(select_title,edit_title)
                     title_dict = my.get_title_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Title Content"):
@@ -211,7 +211,7 @@ def setting_title():
             if st.button('Confirm', key="Edit Title Content"):
                 my.edit_title_row(select_title, title_row_1, title_row_2, title_row_3, title_row_4, title_row_5)
                 title_dict = my.get_title_dict()
-                st.success("變更成功")
+                st.success("Change Successful")
 
 def setting_requirements_introduction():
     st.title("Requirements Introduction")
@@ -252,12 +252,12 @@ def setting_requirements_introduction():
 
         if st.button('Confirm', key="Add Requirements Introduction"):
             if new_requirements_introduction_name in list(requirements_introduction_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_requirements_introduction(new_requirements_introduction_name,product_1,introduction_1,product_2,introduction_2,
                                                     product_3,introduction_3,product_4,introduction_4,product_5,introduction_5)
                 requirements_introduction_dict = my.get_requirements_introduction_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Requirements Introduction Name"):
@@ -269,11 +269,11 @@ def setting_requirements_introduction():
         if select_requirements_introduction_name != None:
             if st.button('Confirm', key="Edit Requirements Introduction Name"):
                 if edit_requirements_introduction_name in list(requirements_introduction_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_requirements_introduction_name(select_requirements_introduction_name,edit_requirements_introduction_name)
                     requirements_introduction_dict = my.get_requirements_introduction_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Requirements Introduction Content"):
@@ -295,7 +295,7 @@ def setting_requirements_introduction():
                 my.edit_requirements_introduction_row(select_requirements_introduction, product_1, introduction_1, product_2,
                                                       introduction_2, product_3, introduction_3, product_4, introduction_4, product_5, introduction_5)
                 requirements_introduction_dict = my.get_requirements_introduction_dict()
-                st.success("變更成功")
+                st.success("Change Successful")
 
 def setting_common_columns():
     st.title("Common Columns")
@@ -351,11 +351,14 @@ def setting_common_columns():
 
         if st.button('Confirm', key="Add Common Columns"):
             if new_common_column_name in list(common_columns_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
+                # Option部分清除不需要的文字
+                option_list = [i.strip("\n") for i in option_list]
+                option_list = [i.strip(" ") for i in option_list]
                 my.create_common_columns(new_common_column_name,column_name_list,data_type_list,option_list,instructions_list)
                 common_columns_dict = my.get_common_columns_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Common Columns Name"):
@@ -367,11 +370,11 @@ def setting_common_columns():
         if select_common_columns_name == None:
             if st.button('Confirm', key="Edit Common Columns Name"):
                 if edit_common_columns_name in list(common_columns_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_common_columns_name(select_common_columns_name,edit_common_columns_name)
                     common_columns_dict = my.get_common_columns_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Common Columns Content"):
@@ -394,11 +397,13 @@ def setting_common_columns():
                         data_df.loc[i, "Instructions"] = st.text_input("Instructions", data_df.loc[i, "Instructions"], key="Edit Common Columns Content Instructions {}".format(i))
 
                 if st.button('Confirm', key="Edit Common Columns Content"):
-                    print(data_df)
+                    # Option部分清除不需要的文字
+                    data_df["Option"] = [i.strip("\n") for i in data_df["Option"]]
+                    data_df["Option"] = [i.strip("") for i in data_df["Option"]]
                     common_columns_data = data_df.to_json(orient="split")
                     my.edit_common_columns_row(select_common_columns_name, common_columns_data)
                     common_columns_dict = my.get_common_columns_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
 def setting_individual_columns():
     st.title("Individual Columns")
@@ -454,11 +459,15 @@ def setting_individual_columns():
 
         if st.button('Confirm', key="Add Individual Columns"):
             if new_individual_column_name in list(individual_columns_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
+                # Option部分清除不需要的文字
+                option_list = [i.strip("\n") for i in option_list]
+                option_list = [i.strip(" ") for i in option_list]
                 my.create_individual_columns(new_individual_column_name,column_name_list,data_type_list,option_list,instructions_list)
                 individual_columns_dict = my.get_individual_columns_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
+
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Individual Columns Name"):
@@ -470,11 +479,11 @@ def setting_individual_columns():
         if select_individual_columns_name != None:
             if st.button('Confirm', key="Edit Individual Columns Name"):
                 if edit_individual_columns_name in list(individual_columns_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_individual_columns_name(select_individual_columns_name,edit_individual_columns_name)
                     individual_columns_dict = my.get_individual_columns_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Individual Columns Content"):
@@ -497,11 +506,13 @@ def setting_individual_columns():
                         data_df.loc[i, "Instructions"] = st.text_input("Instructions", data_df.loc[i, "Instructions"], key="Edit Individual Columns Content Instructions {}".format(i))
 
                 if st.button('Confirm', key="Edit Individual Columns Content"):
-                    print(data_df)
+                    # Option部分清除不需要的文字
+                    data_df["Option"] = [i.strip("\n") for i in data_df["Option"]]
+                    data_df["Option"] = [i.strip("") for i in data_df["Option"]]
                     individual_columns_data = data_df.to_json(orient="split")
                     my.edit_individual_columns_row(select_individual_columns_name, individual_columns_data)
                     individual_columns_dict = my.get_individual_columns_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
 def setting_function():
     st.title("Function Columns")
@@ -533,11 +544,11 @@ def setting_function():
 
         if st.button('Confirm', key="Add Function"):
             if new_function_name in list(function_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_function(new_function_name,attachment,verification_code,send_internal_mail,send_supplier_mail)
                 function_dict = my.get_function_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Function Name"):
@@ -549,11 +560,11 @@ def setting_function():
         if select_function != None:
             if st.button('Confirm', key="Edit Requirements Introduction Name"):
                 if edit_function_name in list(function_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_function_name(select_function,edit_function_name)
                     function_dict = my.get_function_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Function Content"):
@@ -569,7 +580,7 @@ def setting_function():
             if st.button('Confirm', key="Edit Requirements Introduction Content"):
                 my.edit_function_row(select_function,attachment,verification_code,send_internal_mail,send_supplier_mail)
                 function_dict = my.get_function_dict()
-                st.success("變更成功")
+                st.success("Change Successful")
 
 def setting_verification_code():
     st.title("Verification Code")
@@ -612,11 +623,11 @@ def setting_verification_code():
 
         if st.button('Confirm', key="Add Common Columns"):
             if new_verification_code_name in list(verification_code_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_verification_code(new_verification_code_name,name_list,code_list)
                 verification_code_dict = my.get_verification_code_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Verification Code Name"):
@@ -628,11 +639,11 @@ def setting_verification_code():
         if select_verification_code_name != None:
             if st.button('Confirm', key="Edit Requirements Introduction Name"):
                 if edit_verification_code_name in list(verification_code_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_verification_code_name(select_verification_code_name,edit_verification_code_name)
                     verification_code_dict = my.get_verification_code_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Verification Code Content"):
@@ -654,7 +665,7 @@ def setting_verification_code():
                     verification_code_data = data_df.to_json(orient="split")
                     my.edit_verification_code_row(select_verification_code_name, verification_code_data)
                     verification_code_dict = my.get_verification_code_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
 def setting_internal_mail_receipients():
     st.title("Internal Mail Receipients")
@@ -696,11 +707,11 @@ def setting_internal_mail_receipients():
 
         if st.button('Confirm', key="Add Common Columns"):
             if new_internal_mail_receipients_name in list(internal_mail_receipients_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_internal_mail_receipients(new_internal_mail_receipients_name,mail_list,subject_list)
                 internal_mail_receipients_dict = my.get_internal_mail_receipients_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Internal Mail Receipients Name"):
@@ -712,11 +723,11 @@ def setting_internal_mail_receipients():
         if select_internal_mail_receipients_name != None:
             if st.button('Confirm', key="Edit Requirements Introduction Name"):
                 if edit_internal_mail_receipients_name in list(internal_mail_receipients_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_internal_mail_receipients_name(select_internal_mail_receipients_name,edit_internal_mail_receipients_name)
                     internal_mail_receipients_dict = my.get_internal_mail_receipients_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Internal Mail Receipients Content"):
@@ -738,7 +749,7 @@ def setting_internal_mail_receipients():
                     internal_mail_receipients_data = data_df.to_json(orient="split")
                     my.edit_internal_mail_receipients_row(select_internal_mail_receipients_name, internal_mail_receipients_data)
                     internal_mail_receipients_dict = my.get_internal_mail_receipients_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
 def setting_supplier_mail():
     st.title("Supplier Mail Setting")
@@ -767,11 +778,11 @@ def setting_supplier_mail():
 
         if st.button('Confirm', key="Add Function"):
             if new_supplier_mail_setting_name in list(supplier_mail_setting_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_supplier_mail_setting(new_supplier_mail_setting_name,subject,content)
                 supplier_mail_setting_dict = my.get_supplier_mail_setting_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Supplier Mail Setting Name"):
@@ -783,11 +794,11 @@ def setting_supplier_mail():
         if select_supplier_mail_setting != None:
             if st.button('Confirm', key="Edit Supplier Mail Setting Name"):
                 if edit_supplier_mail_setting_name in list(supplier_mail_setting_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_supplier_mail_setting_name(select_supplier_mail_setting,edit_supplier_mail_setting_name)
                     supplier_mail_setting_dict = my.get_supplier_mail_setting_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Supplier Mail Setting Content"):
@@ -803,7 +814,7 @@ def setting_supplier_mail():
             if st.button('Confirm', key="Edit Supplier Mail Setting Content Button"):
                 my.edit_supplier_mail_setting_row(select_supplier_mail_setting,subject,content)
                 supplier_mail_setting_dict = my.get_supplier_mail_setting_dict()
-                st.success("變更成功")
+                st.success("Change Successful")
 
 def setting_check():
     st.title("Check")
@@ -850,11 +861,11 @@ def setting_check():
 
         if st.button('Confirm', key="Add Check"):
             if new_check_name in list(check_dict.keys()):
-                st.warning("名稱重覆")
+                st.warning("Duplicate Name")
             else:
                 my.create_check(new_check_name,check_column_list,formula_list,equal_column_list)
                 check_dict = my.get_check_dict()
-                st.success("新增成功")
+                st.success("Added Successfully")
 
     with tab3:
         if st.button('Refresh', key="Refresh Edit Check Name"):
@@ -866,11 +877,11 @@ def setting_check():
         if select_check_name != None:
             if st.button('Confirm', key="Edit Requirements Introduction Name"):
                 if edit_check_name in list(check_dict.keys()):
-                    st.warning("名稱重覆")
+                    st.warning("Duplicate Name")
                 else:
                     my.edit_check_name(select_check_name,edit_check_name)
                     check_dict = my.get_check_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
     with tab4:
         if st.button('Refresh', key="Refresh Edit Check Content"):
@@ -894,7 +905,7 @@ def setting_check():
                     check_data = data_df.to_json(orient="split")
                     my.edit_check_row(select_check_name, check_data)
                     check_dict = my.get_check_dict()
-                    st.success("變更成功")
+                    st.success("Change Successful")
 
 def download_form():
     st.title("Download")
